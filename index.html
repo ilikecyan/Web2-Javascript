@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <title>ON and Off</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    #btn--onoff {
+      border: 1px solid black;
+      background-color: aliceblue;
+      color: black;
+      /* border: none; */
+      padding: 14px 40px;
+      border-radius: 4px;
+    }
+
+    ul, li {
+      list-style: none;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <h1>ON and Off</h1>
+  <p class="onOffState">불이 켜져있네요 버튼을 눌러보세요!</p>
+  <input id="btn--onoff" type="button" value="off" onclick="onOffHandler(this)">
+  <ul>
+    <li><a href="#">*</a></li>
+    <li><a href="#">***</a></li>
+    <li><a href="#">****</a></li>
+  </ul>  
+</div>
+  <script>
+// Link색상 객체
+ var Links = {
+  // Links의 setColor 함수, 메소드 정의 
+  setColor : function(color) {
+    // // 페이지의 모든 a태그를 담는 변수 alist 
+    // var alist = document.querySelectorAll('a');
+
+    // // 반복문을 통해 모든 a 태그를 매개변수 color 값으로 변경    
+    // var i = 0;
+    // while(i < alist.length) {
+    //   alist[i].style.color = color;
+    //   i = i + 1;
+    // }
+    
+    // JQuery
+    $('a').css('color', color);
+   }
+ }
+
+//  body 객체
+ var Body = {
+  //  Method
+    setFontColor:function(color) {
+     document.querySelector('body').style.color = color;
+   },
+
+   setBgColor:function(color) {
+     document.querySelector('body').style.backgroundColor = color;
+   }
+ }
+
+ var onOffStateValue = document.querySelector('.onOffState');
+
+ function onOffHandler(self) {
+   var target = document.querySelector('body');
+   if (self.value === 'off') {
+     Body.setFontColor('yellow');
+     Body.setBgColor('black');
+      Links.setColor('yellow');
+      self.value = 'on';
+      onOffStateValue.innerHTML = "Off"
+   } else {
+     Body.setFontColor('blue');
+     Body.setBgColor('cyan');
+     Links.setColor('blue');
+     self.value = 'off';
+     onOffStateValue.innerHTML = "On"
+    }
+   }
+  </script>
+</body>
+</html>
